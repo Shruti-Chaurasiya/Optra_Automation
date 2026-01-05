@@ -28,19 +28,23 @@ class Timesheet_Keywords {
         return date_string;
     }
 
-    // async logTimeInTimesheet(page,date) {
-    //     const timesheet_page = new Timesheet_Locators(page);
+    async logTimeInTimesheet(page,date) {
+        const timesheet_page = new Timesheet_Locators(page);
 
-    //     await timesheet_page.timesheet_month_dropdown.selectOption(date);
-    //     if (await (timesheet_page.timesheet_status).first().textContent() === 'Pending') 
-    //         {
-    //             await timesheet_page.timesheet_logtime_button.click();
-    //         }
+        await timesheet_page.timesheet_month_dropdown.selectOption(date);
+        const count = await timesheet_page.timesheet_status.count();
+        for (let i=0;i<count;i++){
+            if (await (timesheet_page.timesheet_status).nth(i).textContent() === 'Pending') 
+                {
+                    await ((timesheet_page.timesheet_logtime_button).nth(i)).click();
+                    break;
+                }
+        }
+        await page.waitForLoadState('networkidle');
+        await expect(timesheet_page.timesheet_header).toBeVisible();
+    }
 
-        
-
-    // need to get the month and year in the dropdown onn the ui and check if the date string is same as the date on the dd of uui 
-// }
+    
 }
 
 module.exports = {Timesheet_Keywords};
