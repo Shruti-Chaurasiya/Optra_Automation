@@ -26,7 +26,6 @@ class Login_Keywords {
         const login_page1 = new Login_Locators(newpage);
         await expect(login_page1.profilenavbar).toBeVisible();
         await login_page1.employeeRoleLabel.scrollIntoViewIfNeeded();
-        await page.waitForTimeout(5000);
         const role = await login_page1.employeeRoleValue.textContent();
         console.log("Employee Role is: " + role);
         // Check if the role on the profile page matches any of the expected roles
@@ -34,12 +33,11 @@ class Login_Keywords {
         for (let i = 0; i < array_role.length; i++) {
             if (role.includes(array_role[i])) {
                 var new_role = array_role[i];
-                await page.bringToFront()
+                await page.bringToFront();
                 await newpage.close();
                 console.log("Matched Role is: " + new_role);
-                return new_role;
             } 
-        
+        return new_role;
         
         }
 

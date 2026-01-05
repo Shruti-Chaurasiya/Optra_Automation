@@ -11,12 +11,25 @@ class Goals_Locators {
         this.my_approvals_tab = page.locator('//button[contains(@class,"text-base") and (contains(text(),"My Approvals"))]');
         this.my_goals_tab = page.locator('//button[contains(@class,"text-base") and (contains(text(),"My Goals"))]');
         this.add_goals_button = page.locator('//h2//parent::div//parent::div//button[contains(text(),"Add Goals")]');
-        this.goals_dashboaerd_rows = page.locator('//div[@class = "empty-text"]');
+        this.goals_dashboard_rows = page.locator('//div[@class = "empty-text"]');
         this.goals_alert_popup = page.getByRole('alert');
 
         // Inside the goals page:
-        this.goals_status = page.locator('//span[text()="Ongoing"]');
+        this.goals_ongoing_status = page.locator('//span[text()="Ongoing"]');
         this.goals_grid_view = page.getByRole('grid');
+        this.select_goals_dropdown = page.locator('//div[@role="gridcell"]//select');
+        this.delivery_qulity_option = page.locator("//option[@value = '${value}']");  //value to be replaced with actual value 
+        this.delivery_description= page.locator('//textarea');
+        this.goal_start_date = page.locator('//div[@aria-rowindex="2"]//div[@aria-colindex="3"]/div');    //change the aria row index for different rows
+        this.goals_from_date = page.locator('//span[text()= "From Date:"]//following-sibling::span');
+        this.goals_success_criteria = page.locator('//div[@aria-rowindex="2"]//div//child::input[@type="text" and @value ="${success_criteria}" ]')    //value to be given from the specs file
+        this.goals_success_or_comment = page.locator('//div[@aria-rowindex="2"]//div//child::input[@type="text"]');      //change the aria row index for different rows
+        this.goals_progress = page.locator('//div[@aria-rowindex="2"]//div//child::input[@type="number"]');    //change the aria row index for different rows
+        this.goals_save_draft_button = page.locator('//button[text()="Save Draft"]');
+        this.goals_popup = page.getByRole('alert');
+        this.goals_submit_button = page.locator('//button[text()="Submit Goals"]');
+        this.add_goals_validation = page.locator('//div[@aria-rowindex="2"]');
+        
 
 
     }
