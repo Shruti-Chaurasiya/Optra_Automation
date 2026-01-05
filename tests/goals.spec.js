@@ -6,7 +6,7 @@ const login_keywords = new Login_Keywords();
 const goals_keywords = new Goals_Keywords();
 
 // Run this hook before each test --> same as suit setup in robot framework
-test('Navigate to the Goals Page and validate that HR is able to see Organization tab', async({page})=>
+test('Navigate to the Goals Page and validate that HR is able to see Organization tab. Also Add goals for the logged In user', async({page})=>
 {
     await login_keywords.Login_To_Optra(page); 
     const role = await login_keywords.Return_Employee_Role(page);
