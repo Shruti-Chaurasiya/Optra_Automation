@@ -1,3 +1,5 @@
+const data_set = require('../testdata/login.json');
+
 class Login_Locators {
     // Locators for the login page elements
     constructor(page) {
@@ -16,15 +18,16 @@ class Login_Locators {
 
     // Keyword to open the site with url
     async navigateToLoginPage() {
-        await this.page.goto("https://optra-uat.indexnine.com/");
+        await this.page.goto(data_set.url);
     }
 
     // Keyword to validate login page
     async validateLoginPage(){
-        await this.usernameField.fill('parita.naik@indexnine.com');
-        await this.passwordField.fill('parita@123');
+        await this.usernameField.fill(data_set.username);
+        await this.passwordField.fill(data_set.password);
         await this.loginButton.click();
-        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForTimeout(1000);
+        await this.page.waitForLoadState('domcontentloaded');
         
 
     }

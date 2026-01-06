@@ -14,5 +14,5 @@ test('Navigate to the Timesheet Page and Validate the Page and log time in the t
     const role = await login_keywords.Return_Employee_Role(page);
     await timesheet_keywords.navigateToTimesheetPage(page);
     const date = await timesheet_keywords.getCurrentMonthAndYear();
-    await timesheet_keywords.logTimeInTimesheet(page,date);
+    await timesheet_keywords.ClickOnLogTimeButton(page,date);
 });

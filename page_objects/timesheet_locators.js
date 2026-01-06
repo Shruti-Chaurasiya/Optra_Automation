@@ -11,7 +11,9 @@ class Timesheet_Locators {
         this.timesheet_logtime_button = page.locator('//button[text()="Log time"]');
         this.timesheet_header = page.locator('//h1[text()="Log Time"]');
         
-
+        this.timesheet_dynamic_col = page.locator('(//div[@aria-colindex="${col_index}" and not(@role="columnheader")])[1]'); // col_index to be replaced with actual index
+        this.timesheet_activity_dropdown = page.locator('');
+        
      }
 }
 

@@ -1,4 +1,4 @@
-const {test , expect} = require('@playwright/test');
+const {test , expect} =  require('@playwright/test');
 const {Goals_Keywords} = require('../action/goals_keywords.js');
 const {Login_Keywords} = require('../action/login_keywords.js');
   
@@ -15,4 +15,14 @@ test('Navigate to the Goals Page and validate that HR is able to see Organizatio
     await goals_keywords.Check_Goal_Tabs_According_To_Roles(page,role);
     await goals_keywords.Click_On_Add_Goals_Button(page);
     await goals_keywords.Add_Goals(page);
+});
+
+test('Switch to Organization tab and validate total pending goals for the organization', async({page})=>
+{
+    await login_keywords.Login_To_Optra(page);
+    const role =  await login_keywords.Return_Employee_Role(page);
+    await goals_keywords.navigateToGoalsPage(page);
+    await page.waitForLoadState('domcontentloaded');
+    await goals_keywords.Switch_To_Organization_Tab(page,role);
+    
 });

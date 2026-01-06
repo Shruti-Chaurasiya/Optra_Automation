@@ -28,7 +28,7 @@ class Timesheet_Keywords {
         return date_string;
     }
 
-    async logTimeInTimesheet(page,date) {
+    async ClickOnLogTimeButton(page,date) {
         const timesheet_page = new Timesheet_Locators(page);
 
         await timesheet_page.timesheet_month_dropdown.selectOption(date);
@@ -42,6 +42,16 @@ class Timesheet_Keywords {
         }
         await page.waitForLoadState('networkidle');
         await expect(timesheet_page.timesheet_header).toBeVisible();
+    }
+
+    async LogTimeInTimesheet(page) 
+    {
+        const timesheet_page = new Timesheet_Locators(page);
+        for (let col_index=2; col_index<=11; col_index++) {
+            const col_locator = await timesheet_page.timesheet_dynamic_col(col_index);
+// col ko replace krna hai and fir usme value dalni hai and col pe iterate krke clicks krne hai
+            
+        }
     }
 
     

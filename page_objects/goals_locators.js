@@ -30,6 +30,12 @@ class Goals_Locators {
         this.goals_submit_button = page.locator('//button[text()="Submit Goals"]');
         this.add_goals_validation = page.locator('//div[@aria-rowindex="2"]');
         
+        // Organizational Goals 
+        this.org_goals_dashboard_header = page.locator('//div/h3[contains(text(),"Cycle Summary")]');
+        this.card_title_and_count = page.locator('//div[contains(@class,"grid grid-cols-2")]/div//p[contains(text(),"${cards_title}")]');           // card title to be given from json file and count to be verified
+        this.goals_table = page.locator('.custom-table-wrapper');
+        this.goals_status = page.locator('//div[@aria-colindex="2" and not (@role="columnheader")]');
+        
 
 
     }
