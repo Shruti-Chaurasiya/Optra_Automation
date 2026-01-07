@@ -1,4 +1,6 @@
 const { expect } = require("@playwright/test");
+const data_set = require('../testdata/goals.json');
+
 
 class Goals_Locators {
     // Locators for the goals page elements
@@ -32,7 +34,7 @@ class Goals_Locators {
         
         // Organizational Goals 
         this.org_goals_dashboard_header = page.locator('//div/h3[contains(text(),"Cycle Summary")]');
-        this.card_title_and_count = page.locator('//div[contains(@class,"grid grid-cols-2")]/div//p[contains(text(),"${cards_title}")]');           // card title to be given from json file and count to be verified
+        this.card_count = page.locator(`//div[contains(@class,"grid grid-cols-2")]/div//p[contains(text(),"${data_set.cardname}")]//preceding-sibling::p`);           // card title to be given from json file and count to be verified
         this.goals_table = page.locator('.custom-table-wrapper');
         this.goals_status = page.locator('//div[@aria-colindex="2" and not (@role="columnheader")]');
         

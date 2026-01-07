@@ -24,5 +24,11 @@ test('Switch to Organization tab and validate total pending goals for the organi
     await goals_keywords.navigateToGoalsPage(page);
     await page.waitForLoadState('domcontentloaded');
     await goals_keywords.Switch_To_Organization_Tab(page,role);
+    await goals_keywords.Validate_Pending_Goals_Count(page);
     
+});
+
+test('Switch to Organization tab and validate total goals filled for the organization', async({page})=>
+{
+    await
 });

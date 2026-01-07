@@ -92,9 +92,29 @@ class Goals_Keywords {
             await expect(goals_page.organization_tab).toBeHidden();
         }
 
-        await goals_page.goals_table.scrollIntoViewIfNeeded();
+        // await goals_page.goals_table.scrollIntoViewIfNeeded();
         await page.waitForTimeout(5000);
     }
+
+    async Validate_Pending_Goals_Count(page){
+        const goals_page = new Goals_Locators(page);
+        const count = await goals_page.goals_status.count();
+        let pending_goals = 0;
+        for (let i=0; i<=count;i++){
+            goals_page.goals_status.nth(i).scrollIntoViewIfNeeded();
+            if (await (goals_page.goals_status).nth(i).textContent() === 'Approval Pending'){
+                pending_goals= pending_goals+1;
+            }
+            else{
+                continue;
+            }
+        }
+        console.log("Total Pending Goals are: " + pending_goals);
+        await page.evaluate(() => window.scrollTo(0, 0));
+        const card_count = await goals_page.card_count.textContent();
+        console.log("Pending Goals count from Card is: " + card_count);
+        await expect(parseInt(card_count)).toBe(pending_goals);
+}
 }
 
 module.exports = {Goals_Keywords};

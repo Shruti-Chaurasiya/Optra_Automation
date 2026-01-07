@@ -1,5 +1,6 @@
 {
     "goals_value" : "GOAL-2025-0320",
     "comment" : "Automation Test Comment",
-    "progress" : "40"
+    "progress" : "40",
+    "cardname" : "Goals Pending Approval"
 }
