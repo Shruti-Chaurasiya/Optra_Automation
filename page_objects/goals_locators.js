@@ -35,12 +35,16 @@ class Goals_Locators {
         this.goals_checkbox_dynamic_desc = (desc) => page.locator(`//span[@title ="${desc}"]//parent::div//preceding::div[@role="gridcell"]//input[@type="checkbox"]`);
         this.last_cycle_add_goals_button = page.locator('//button[text()= "Add Goals"]');
         this.goals_description = page.locator('//div[@aria-colindex="2" and not(@role="columnheader")]//span')
+        this.goals_attach_pdf_button = page.locator('//button[text()="Attach"]');
+        this.goals_view_attachments_button = page.locator('//button[text()= " View Attachment"]');
+
 
         // Organizational Goals 
         this.org_goals_dashboard_header = page.locator('//div/h3[contains(text(),"Cycle Summary")]');
         this.card_count = (cardname) => page.locator(`//div[contains(@class,"grid grid-cols-2")]/div//p[contains(text(),"${cardname}")]//preceding-sibling::p`);           // card title to be given from json file and count to be verified
         this.goals_table = page.locator('.custom-table-wrapper');
         this.goals_status = page.locator('//div[@aria-colindex="2" and not (@role="columnheader")]');
+        this.pdf_upload_input = page.locator('input[type="file"]');  // Locator for PDF upload input
         
 
 

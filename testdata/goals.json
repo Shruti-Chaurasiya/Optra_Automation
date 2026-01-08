@@ -6,7 +6,8 @@
     },
 
     "TC_02":{
-        "cardname" : "Goals Pending Approval"
+        "cardname" : "Goals Pending Approval",
+        "goals_value"  : "GOAL-2025-0320"
     },
 
     "TC_03":{
@@ -15,5 +16,9 @@
 
     "TC_04":{
         "description" : "Self development - Learn new skills"
+    },
+
+    "TC_06" : {
+        "filepath" : "testdata/sample.pdf"
     }
 }

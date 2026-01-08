@@ -8,5 +8,12 @@
     "TC_02":{
         "username":"amit.renwal@indexnine.com",
         "password":"amit@123"
+    },
+
+    "TC_06" : {
+        "username":"parita.naik@indexnine.com",
+        "password":"parita@123"
     }
+    
+
 }

@@ -46,13 +46,12 @@ class Goals_Keywords {
         }
     }
 
-    async Add_Goals(page){
+    async Add_Goals(page,value){
         const goals_page = new Goals_Locators(page);
         await expect(goals_page.goals_ongoing_status).toBeVisible();
         await expect(goals_page.goals_grid_view).toBeVisible();
         //Click on the dropdown and select a goal
-        await goals_page.select_goals_dropdown.click();
-        const value  = data_set.TC_02.goals_value;        //data  from goals 
+        await goals_page.select_goals_dropdown.click();        
         await goals_page.select_goals_dropdown.selectOption(value);
         
         // Description and date validation
@@ -172,7 +171,24 @@ class Goals_Keywords {
         }
     }
 
-    
+    async Attach_PDF_And_Validate(page,pdf_file){
+        const goals_page = new Goals_Locators(page);
+        await goals_page.pdf_upload_input.setInputFiles(pdf_file);
+        console.log("PDF attached successfully");
+        await expect(goals_page.goals_popup).toBeVisible();
+        await expect(goals_page.goals_view_attachments_button).toBeVisible();
+    }
+
+    async Attach_PDF_Under_Goals(page){
+        const goals_page = new Goals_Locators(page);
+
+        await page.waitForLoadState('domcontentloaded');
+        await goals_page.goals_attach_pdf_button.scrollIntoViewIfNeeded();
+        await goals_page.goals_attach_pdf_button.click();
+        
+    }
+
+
 }
 
 module.exports = {Goals_Keywords};
