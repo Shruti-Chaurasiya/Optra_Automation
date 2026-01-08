@@ -52,7 +52,7 @@ class Goals_Keywords {
         await expect(goals_page.goals_grid_view).toBeVisible();
         //Click on the dropdown and select a goal
         await goals_page.select_goals_dropdown.click();
-        const value  = data_set.goals_value;        //data  from goals 
+        const value  = data_set.TC_02.goals_value;        //data  from goals 
         await goals_page.select_goals_dropdown.selectOption(value);
         
         // Description and date validation
@@ -67,10 +67,10 @@ class Goals_Keywords {
         // await goals_page.goals_success_criteria.click(success_criteria);
         // await expect(goals_page.goals_success_criteria).toContainText('40 badges in FY 2025');
 
-        await (goals_page.goals_success_or_comment.last()).fill(data_set.comment);  
+        await (goals_page.goals_success_or_comment.last()).fill(data_set.TC_01.comment);  
 
         // Progress for a goal
-        await goals_page.goals_progress.fill(data_set.progress);
+        await goals_page.goals_progress.fill(data_set.TC_01.progress);
 
         // Click on Save Draft and Submit Button : 
         await goals_page.goals_save_draft_button.click();
@@ -111,10 +111,68 @@ class Goals_Keywords {
         }
         console.log("Total Pending Goals are: " + pending_goals);
         await page.evaluate(() => window.scrollTo(0, 0));
-        const card_count = await goals_page.card_count.textContent();
+        const card_count = await goals_page.card_count(data_set.TC_02.cardname).textContent();
         console.log("Pending Goals count from Card is: " + card_count);
         await expect(parseInt(card_count)).toBe(pending_goals);
-}
+    }
+
+    async Validate_Total_Goals_Filled_Count(page){
+        const goals_page = new Goals_Locators(page);
+        const count = await goals_page.goals_status.count();
+        let goals_filled = 0;
+        for (let i=0; i<=count;i++){
+            if (await (goals_page.goals_status).nth(i).textContent() !== 'Rejected'){
+                goals_page.goals_status.nth(i).scrollIntoViewIfNeeded();
+                goals_filled = goals_filled + 1;
+            }
+            else {
+                continue;
+            }
+        }
+        console.log("Total Goals filled are: " + goals_filled);
+        await page.evaluate(() => window.scrollTo(0, 0));
+        const card_count = await goals_page.card_count(data_set.TC_03.cardname).textContent();
+        console.log("Total Goals filled count from Card is: " + card_count);
+        await expect(parseInt(card_count)).toBe(goals_filled);
+
+        return goals_filled;
+    }
+
+    async Add_Goals_From_Last_Cycle(page){
+        const goals_page = new Goals_Locators(page);
+
+        await expect(goals_page.goals_status).toHaveText("Approved");
+        await goals_page.add_goals_button.click();
+        await page.waitForLoadState('domcontentloaded');
+        await expect(goals_page.add_goals_header).toHaveText('Employee Details');
+        await goals_page.copy_goals_from_last_cycle_option.click();
+    }
+
+    async Select_Goals_from_Last_Cycle(page){
+        const goals_page = new Goals_Locators(page);
+        await goals_page.goals_checkbox_dynamic_desc(data_set.TC_04.description).click();
+        await goals_page.last_cycle_add_goals_button.click();
+        await page.waitForLoadState('domcontentloaded');
+    }
+
+    async Validate_Copied_Goals_Data(page){
+        const goals_page = new Goals_Locators(page);
+        const count = await goals_page.goals_description.count();
+        let matchfound = false;
+        for (let i = 0; i <= count; i++){
+            let desc = await goals_page.goals_description.nth(i).textContent();
+            if (desc === data_set.TC_04.description){
+                matchfound = true;
+                console.log("Goal description matched: " + desc);
+                break;
+            } else {
+                console.log("No match found for: " + desc);
+                expect(matchfound).toBe(true);
+            }
+        }
+    }
+
+    
 }
 
 module.exports = {Goals_Keywords};

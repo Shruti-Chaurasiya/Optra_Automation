@@ -31,10 +31,14 @@ class Goals_Locators {
         this.goals_popup = page.getByRole('alert');
         this.goals_submit_button = page.locator('//button[text()="Submit Goals"]');
         this.add_goals_validation = page.locator('//div[@aria-rowindex="2"]');
-        
+        this.copy_goals_from_last_cycle_option = page.locator('//span[contains(text(),"Copy Goals from Last Cycle")]')
+        this.goals_checkbox_dynamic_desc = (desc) => page.locator(`//span[@title ="${desc}"]//parent::div//preceding::div[@role="gridcell"]//input[@type="checkbox"]`);
+        this.last_cycle_add_goals_button = page.locator('//button[text()= "Add Goals"]');
+        this.goals_description = page.locator('//div[@aria-colindex="2" and not(@role="columnheader")]//span')
+
         // Organizational Goals 
         this.org_goals_dashboard_header = page.locator('//div/h3[contains(text(),"Cycle Summary")]');
-        this.card_count = page.locator(`//div[contains(@class,"grid grid-cols-2")]/div//p[contains(text(),"${data_set.cardname}")]//preceding-sibling::p`);           // card title to be given from json file and count to be verified
+        this.card_count = (cardname) => page.locator(`//div[contains(@class,"grid grid-cols-2")]/div//p[contains(text(),"${cardname}")]//preceding-sibling::p`);           // card title to be given from json file and count to be verified
         this.goals_table = page.locator('.custom-table-wrapper');
         this.goals_status = page.locator('//div[@aria-colindex="2" and not (@role="columnheader")]');
         

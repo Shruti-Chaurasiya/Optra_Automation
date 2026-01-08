@@ -18,13 +18,13 @@ class Login_Locators {
 
     // Keyword to open the site with url
     async navigateToLoginPage() {
-        await this.page.goto(data_set.url);
+        await this.page.goto(data_set.TC_01.url);
     }
 
     // Keyword to validate login page
-    async validateLoginPage(){
-        await this.usernameField.fill(data_set.username);
-        await this.passwordField.fill(data_set.password);
+    async validateLoginPage(username, password) {
+        await this.usernameField.fill(username);
+        await this.passwordField.fill(password);
         await this.loginButton.click();
         await this.page.waitForTimeout(1000);
         await this.page.waitForLoadState('domcontentloaded');

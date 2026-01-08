@@ -1,14 +1,15 @@
 const {test , expect} =  require('@playwright/test');
 const {Goals_Keywords} = require('../action/goals_keywords.js');
 const {Login_Keywords} = require('../action/login_keywords.js');
-  
+const data_set = require('../testdata/login.json');
+
 const login_keywords = new Login_Keywords();
 const goals_keywords = new Goals_Keywords();
 
 // Run this hook before each test --> same as suit setup in robot framework
-test('Navigate to the Goals Page and validate that HR is able to see Organization tab. Also Add goals for the logged In user', async({page})=>
+test('TC_01 Navigate to the Goals Page and validate that HR is able to see Organization tab. Also Add goals for the logged In user', async({page})=>
 {
-    await login_keywords.Login_To_Optra(page); 
+    await login_keywords.Login_To_Optra(page,data_set.TC_01.username,data_set.TC_01.password); 
     const role = await login_keywords.Return_Employee_Role(page);
     await goals_keywords.navigateToGoalsPage(page);
     await page.waitForTimeout(5000);
@@ -17,9 +18,9 @@ test('Navigate to the Goals Page and validate that HR is able to see Organizatio
     await goals_keywords.Add_Goals(page);
 });
 
-test('Switch to Organization tab and validate total pending goals for the organization', async({page})=>
+test('TC_02 Switch to Organization tab and validate total pending goals for the organization', async({page})=>
 {
-    await login_keywords.Login_To_Optra(page);
+    await login_keywords.Login_To_Optra(page,data_set.TC_01.username,data_set.TC_01.password);
     const role =  await login_keywords.Return_Employee_Role(page);
     await goals_keywords.navigateToGoalsPage(page);
     await page.waitForLoadState('domcontentloaded');
@@ -28,7 +29,22 @@ test('Switch to Organization tab and validate total pending goals for the organi
     
 });
 
-test('Switch to Organization tab and validate total goals filled for the organization', async({page})=>
+test('TC_03 Switch to Organization tab and validate total goals filled for the organization', async({page})=>
 {
-    await
+    await login_keywords.Login_To_Optra(page,data_set.TC_01.username,data_set.TC_01.password);
+    const role =  await login_keywords.Return_Employee_Role(page);
+    await goals_keywords.navigateToGoalsPage(page);
+    await page.waitForLoadState('domcontentloaded');
+    await goals_keywords.Switch_To_Organization_Tab(page,role);
+    await goals_keywords.Validate_Total_Goals_Filled_Count(page);
+});
+
+test('TC_04 Verify Copy goals from last cycle displays accurate data from previous goals cycle', async({page}) => {
+
+    await login_keywords.Login_To_Optra(page,data_set.TC_02.username,data_set.TC_02.password);
+    await goals_keywords.navigateToGoalsPage(page);
+    await page.waitForLoadState('domcontentloaded');
+    await goals_keywords.Add_Goals_From_Last_Cycle(page);
+    await goals_keywords.Select_Goals_from_Last_Cycle(page);
+    await goals_keywords.Validate_Copied_Goals_Data(page);
 });

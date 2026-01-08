@@ -6,11 +6,11 @@ const {Login_Locators} = require('../page_objects/login_locators');
 
 class Login_Keywords {
    
-    async Login_To_Optra(page)
+    async Login_To_Optra(page, username, password)
     {
         const login_page = new Login_Locators(page);
         await login_page.navigateToLoginPage();
-        await login_page.validateLoginPage();
+        await login_page.validateLoginPage(username, password);
         await page.waitForLoadState('networkidle');
         await expect(login_page.dashboardHeader).toBeVisible();
 

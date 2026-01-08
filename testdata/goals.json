@@ -1,6 +1,19 @@
 {
+    "TC_01":{
     "goals_value" : "GOAL-2025-0320",
     "comment" : "Automation Test Comment",
-    "progress" : "40",
-    "cardname" : "Goals Pending Approval"
+    "progress" : "40"
+    },
+
+    "TC_02":{
+        "cardname" : "Goals Pending Approval"
+    },
+
+    "TC_03":{
+        "cardname" : "Goals Filled"
+    },
+
+    "TC_04":{
+        "description" : "Self development - Learn new skills"
+    }
 }
