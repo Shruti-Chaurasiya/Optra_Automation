@@ -26,10 +26,6 @@ class Login_Locators {
         await this.usernameField.fill(username);
         await this.passwordField.fill(password);
         await this.loginButton.click();
-        await this.page.waitForTimeout(1000);
-        await this.page.waitForLoadState('domcontentloaded');
-        
-
     }
 
     // Method to click profile menu and handle new tab
