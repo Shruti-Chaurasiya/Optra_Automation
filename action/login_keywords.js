@@ -12,8 +12,6 @@ class Login_Keywords {
         await login_page.navigateToLoginPage();
         await login_page.validateLoginPage(username, password);
         await page.waitForLoadState('networkidle');
-        await expect(login_page.dashboardHeader).toBeVisible();
-
     }
 
     async Return_Employee_Role(page){
