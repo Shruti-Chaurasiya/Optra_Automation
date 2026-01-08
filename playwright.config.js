@@ -31,7 +31,7 @@ export default defineConfig({
     // baseURL: 'https://optra-uat.indexnine.com/',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    headless: false,
+    // headless: false,
     // viewport: null,
     trace: 'on',
   },
