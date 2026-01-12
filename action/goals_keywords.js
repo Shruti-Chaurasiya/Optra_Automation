@@ -37,6 +37,7 @@ class Goals_Keywords {
         if (goals_page.goals_dashboard_rows){
             await goals_page.add_goals_button.click();
             await page.waitForLoadState('networkidle');
+            await expect(goals_page.add_goals_header).toBeVisible();
             await expect(goals_page.add_goals_header).toHaveText('Employee Details');
         }
 
