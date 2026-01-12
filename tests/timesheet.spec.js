@@ -10,7 +10,7 @@ const timesheet_keywords = new Timesheet_Keywords();
 
 test('Navigate to the Timesheet Page and Validate the Page and log time in the timesheet' , async({page}) =>
 {   
-    await login_keywords.Login_To_Optra(page);
+    await login_keywords.Login_To_Optra(page,data_set.TC_06.username,data_set.TC_06.password);
     const role = await login_keywords.Return_Employee_Role(page);
     await timesheet_keywords.navigateToTimesheetPage(page);
     const date = await timesheet_keywords.getCurrentMonthAndYear();
