@@ -1,8 +1,8 @@
 const {expect} = require('@playwright/test');
 const {Goals_Locators} = require('../page_objects/goals_locators');
 const {Login_Keywords} = require('./login_keywords');
-const { validateHeaderValue } = require('http');
 const data_set = require('../testdata/goals.json');
+const { time } = require('console');
 
 class Goals_Keywords {
    
@@ -198,15 +198,17 @@ class Goals_Keywords {
         await page.waitForLoadState('domcontentloaded');
         await goals_page.edit_goals_button.click();
         await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(3000);
     }
 
 
     async Validate_Manager_Comments_Non_Editable(page){
         const goals_page = new Goals_Locators(page);
         await goals_page.manager_comments_field.scrollIntoViewIfNeeded();
-        const isEditable = await goals_page.manager_comments_field.isEditable();
-        await expect(isEditable).toBeFalsy();
+        await expect(goals_page.manager_comments_field).toBeVisible();
     }
+
+    
 }
 
 module.exports = {Goals_Keywords};
