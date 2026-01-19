@@ -15,6 +15,9 @@ class Goals_Locators {
         this.add_goals_button = page.locator('//h2//parent::div//parent::div//button[contains(text(),"Add Goals")]');
         this.goals_dashboard_rows = page.locator('//div[@class = "empty-text"]');
         this.goals_alert_popup = page.getByRole('alert');
+        this.edit_goals_button = page.locator('//div[@aria-colindex="6" and not(@role = "columnheader")]//button');
+        this.manager_comments_field = page.locator('//span[contains(text(),"Comments:")]//following::div');
+
 
         // Inside the goals page:
         this.goals_ongoing_status = page.locator('//span[text()="Ongoing"]');

@@ -17,6 +17,7 @@ test('TC_01 Navigate to the Goals Page and validate that HR is able to see Organ
     await goals_keywords.Check_Goal_Tabs_According_To_Roles(page,role);
     await goals_keywords.Click_On_Add_Goals_Button(page);
     await goals_keywords.Add_Goals(page,goals_data.TC_02.goals_value);
+    // await goals_keywords.Save_And_Submit_Goals(page);
 });
 
 test('TC_02 Switch to Organization tab and validate total pending goals for the organization', async({page})=>
@@ -57,4 +58,17 @@ test('TC_06 Verify attaching a pdf display its name under PDF with proof of goal
     await goals_keywords.Click_On_Add_Goals_Button(page);
     await goals_keywords.Attach_PDF_Under_Goals(page);
     await goals_keywords.Attach_PDF_And_Validate(page, goals_data.TC_06.filepath);
+});
+
+test('Verify employee should not be able to add text in the Manager Comments', async ({page}) => {
+
+    await login_keywords.Login_To_Optra(page,data_set.TC_01.username,data_set.TC_01.password);
+    const role = await login_keywords.Return_Employee_Role(page);
+    await goals_keywords.navigateToGoalsPage(page);
+    await goals_keywords.Check_Goal_Tabs_According_To_Roles(page,role);
+    await goals_keywords.Click_On_Add_Goals_Button(page);
+    await goals_keywords.Add_Goals(page,goals_data.TC_02.goals_value);
+    await goals_keywords.Save_And_Submit_Goals(page);
+    await goals_keywords.Click_On_First_Edit_Goals_Button(page);
+    await goals_keywords.Validate_Manager_Comments_Non_Editable(page);
 });
