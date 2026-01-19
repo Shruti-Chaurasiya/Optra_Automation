@@ -71,7 +71,10 @@ class Goals_Keywords {
 
         // Progress for a goal
         await goals_page.goals_progress.fill(data_set.TC_01.progress);
+    }
 
+    async Save_And_Submit_Goals(page){
+        const goals_page = new Goals_Locators(page);
         // Click on Save Draft and Submit Button : 
         await goals_page.goals_save_draft_button.click();
         await expect(goals_page.goals_popup).toBeVisible();
@@ -189,7 +192,21 @@ class Goals_Keywords {
         
     }
 
+    async Click_On_First_Edit_Goals_Button(page){
 
+        const goals_page = new Goals_Locators(page);
+        await page.waitForLoadState('domcontentloaded');
+        await goals_page.edit_goals_button.click();
+        await page.waitForLoadState('domcontentloaded');
+    }
+
+
+    async Validate_Manager_Comments_Non_Editable(page){
+        const goals_page = new Goals_Locators(page);
+        await goals_page.manager_comments_field.scrollIntoViewIfNeeded();
+        const isEditable = await goals_page.manager_comments_field.isEditable();
+        await expect(isEditable).toBeFalsy();
+    }
 }
 
 module.exports = {Goals_Keywords};
