@@ -27,15 +27,15 @@ class Login_Keywords {
         const role = await login_page1.employeeRoleValue.textContent();
         console.log("Employee Role is: " + role);
         // Check if the role on the profile page matches any of the expected roles
-        const array_role = ['HR', 'Employee' , 'Engineering Manager' , 'Manager' , 'Account User' , ];
-        for (let i = 0; i < array_role.length; i++) {
-            if (role.includes(array_role[i])) {
-                var new_role = array_role[i];
-                await page.bringToFront();
-                await newpage.close();
-                console.log("Matched Role is: " + new_role);
-            } 
-        return new_role;
+        // const array_role = ['HR', 'Employee' , 'Engineering Manager' , 'Manager' , 'Account User' ,'Engineering Partner' ];
+        // for (let i = 0; i < array_role.length; i++) {
+        //     if (role.includes(array_role[i])) {
+        //         var new_role = array_role[i];
+        //         // await page.bringToFront();
+        //         await newpage.close();
+        //         console.log("Matched Role is: " + new_role);
+        //     } 
+        return role;
         
         }
 
@@ -61,7 +61,7 @@ class Login_Keywords {
 
 
     }
-}
+
 
 module.exports = {Login_Keywords};
 

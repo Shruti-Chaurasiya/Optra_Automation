@@ -26,6 +26,12 @@
         "password" : "shree@123",
         "form_name" : "Goal Form List",
         "emp_name" : "Parita Naik"
+    },
+
+    "TC_09" : {
+        "username" : "amit.renwal@indexnine.com",
+        "password" : "amit@123",
+        "comment" : "Approved by Manager via Automation"
     }
 
 }

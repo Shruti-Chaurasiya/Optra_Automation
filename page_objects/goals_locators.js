@@ -51,6 +51,9 @@ class Goals_Locators {
         this.pdf_upload_input = page.locator('input[type="file"]');  // Locator for PDF upload input
         
 
+        // Manager goals
+        this.manager_approve_button = page.locator('//button[text()="Approve Goals"]');
+        this.manager_page_comment = page.getByPlaceholder('No manager comments available');
 
     }
 }

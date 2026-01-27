@@ -39,8 +39,9 @@ class Appraisal_Keywords {
         await page.waitForLoadState('networkidle');
         
         // Click on employee name field and search
-        await appraisal_page.employee_name_field.last().click();
-        await appraisal_page.employee_name_field.last().fill(emp_name);
+        await appraisal_page.employee_name_field.click();
+        // await appraisal_page.employee_name_field.last().clear();
+        await appraisal_page.employee_name_field.fill(emp_name);
         await page.waitForTimeout(500);
         
         await appraisal_page.emp_name(emp_name).click();
