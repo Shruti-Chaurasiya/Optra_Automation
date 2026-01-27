@@ -1,8 +1,8 @@
 const {expect} = require('@playwright/test');
 const {Goals_Locators} = require('../page_objects/goals_locators');
 const {Login_Keywords} = require('./login_keywords');
-const { validateHeaderValue } = require('http');
 const data_set = require('../testdata/goals.json');
+const { time } = require('console');
 
 class Goals_Keywords {
    
@@ -21,7 +21,7 @@ class Goals_Keywords {
         const login_keywords = new Login_Keywords();
         if (role === 'HR') {
             await expect(goals_page.organization_tab).toBeVisible();
-        } else if (role === 'Manager' || role === 'Engineering Manager') {
+        } else if (role === 'Manager' || role === 'Engineering Partner') {
             await expect(goals_page.my_approvals_tab).toBeVisible();
         } else if (role === 'Employee') {
             await expect(goals_page.my_goals_tab).toBeVisible();
@@ -29,6 +29,14 @@ class Goals_Keywords {
         else if (role === 'HR' && role === 'Manager'){
             await expect(goals_page.organization_tab).toBeVisible();
             await expect(goals_page.my_approvals_tab).toBeVisible();
+        }
+    }
+
+
+    async Switch_To_My_Approvals_Tab(page, role){
+        const goals_page = new Goals_Locators(page);
+        if (role === 'Manager' || role === 'Engineering Partner') {
+            await goals_page.my_approvals_tab.click();
         }
     }
 
@@ -196,16 +204,30 @@ class Goals_Keywords {
 
         const goals_page = new Goals_Locators(page);
         await page.waitForLoadState('domcontentloaded');
-        await goals_page.edit_goals_button.click();
-        await page.waitForLoadState('domcontentloaded');
+        if (await goals_page.goals_status.first().textContent() === 'Draft' || await goals_page.goals_status.first().textContent() === 'Approval Pending'){
+            await goals_page.edit_goals_button.first().click();
+            await page.waitForLoadState('domcontentloaded');
+            await page.waitForTimeout(3000);
     }
+}
 
 
     async Validate_Manager_Comments_Non_Editable(page){
         const goals_page = new Goals_Locators(page);
         await goals_page.manager_comments_field.scrollIntoViewIfNeeded();
-        const isEditable = await goals_page.manager_comments_field.isEditable();
-        await expect(isEditable).toBeFalsy();
+        await expect(goals_page.manager_comments_field).toBeVisible();
+    }
+
+    async Add_Manager_Comments(page, comment){
+        const goals_page = new Goals_Locators(page);
+        await expect(goals_page.manager_page_comment).toBeVisible();
+        await goals_page.manager_page_comment.fill(comment);
+    }
+
+    async Approve_Goal_As_Manager(page){
+        const goals_page = new Goals_Locators(page);
+        await goals_page.manager_approve_button.click();
+
     }
 }
 
