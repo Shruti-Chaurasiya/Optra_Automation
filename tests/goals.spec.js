@@ -10,7 +10,7 @@ const goals_keywords = new Goals_Keywords();
 const appraisal_keywords = new Appraisal_Keywords();
 
 // Run this hook before each test --> same as suit setup in robot framework
-test('TC_01 Navigate to the Goals Page and validate that HR is able to see Organization tab. Also Add goals for the logged In user', async({page})=>
+test('@IMP TC_01 Navigate to the Goals Page and validate that HR is able to see Organization tab. Also Add goals for the logged In user', async({page})=>
 {
     await login_keywords.Login_To_Optra(page,data_set.TC_01.username,data_set.TC_01.password); 
     const role = await login_keywords.Return_Employee_Role(page);
@@ -76,7 +76,7 @@ test('TC_07Verify employee should not be able to add text in the Manager Comment
 });
 
 // Delete goal from backend 
-test('TC_08 Delete a goal from the backend for solving the issue of data dependency', async({page}) => {
+test('@IMP TC_08 Delete a goal from the backend for solving the issue of data dependency', async({page}) => {
     await login_keywords.Login_To_Optra(page,goals_data.TC_07.username,goals_data.TC_07.password);
     const backend_page = await appraisal_keywords.navigateToAppraisalPage(page);
     await backend_page.waitForLoadState('networkidle');
