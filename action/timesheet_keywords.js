@@ -47,12 +47,11 @@ class Timesheet_Keywords {
     async LogTimeInTimesheet(page) 
     {
         const timesheet_page = new Timesheet_Locators(page);
-        for (let col_index=2; col_index<=11; col_index++) {
-            const col_locator = await timesheet_page.timesheet_dynamic_col(col_index);
-// col ko replace krna hai and fir usme value dalni hai and col pe iterate krke clicks krne hai
+        await timesheet_page.timesheet_select_activity.click();
+        await timesheet_page.qa_activity_option.click();
             
-        }
     }
+    
 
     
 }
