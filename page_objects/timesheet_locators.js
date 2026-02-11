@@ -8,7 +8,7 @@ class Timesheet_Locators {
         this.my_timesheet_tab = page.locator('//button[text()="My Timesheets"]');
         this.timesheet_month_dropdown = page.locator('//select');
         this.timesheet_status = page.locator('//span[text()="Pending"]');
-        this.timesheet_logtime_button = page.locator('(//button[text()="Log time"])[1]');
+        this.timesheet_logtime_button = page.locator('//button[text()="Log time" and not (@disabled)]');
         this.timesheet_header = page.locator('//h1[text()="Log Time"]');
         
         this.timesheet_dynamic_col = page.locator('(//div[@aria-colindex="${col_index}" and not(@role="columnheader")])[1]'); // col_index to be replaced with actual index
