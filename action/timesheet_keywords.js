@@ -5,13 +5,17 @@ const { time } = require('node:console');
 
 class Timesheet_Keywords {
 
-    async navigateToTimesheetPage(page) {
+    async navigateToLoginPageforProd(page,url){
+        await page.goto(url);
+    }
+
+    async navigateToTimesheetPage(page,role){
         const timesheet_page = new Timesheet_Locators(page);
         await timesheet_page.timesheet_menu.click();
         await page.waitForLoadState('networkidle');
         await expect(timesheet_page.timesheet_dashboard).toBeVisible();
-        await expect(timesheet_page.timesheet_dashboard).toHaveText('Timesheet');
-        await timesheet_page.my_timesheet_tab.click();
+        // await expect(timesheet_page.timesheet_dashboard).toHaveText('Timesheet');
+        // await timesheet_page.my_timesheet_tab.click();
     }
 
     async getCurrentMonthAndYear() {

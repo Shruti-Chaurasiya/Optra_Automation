@@ -1,5 +1,8 @@
 {
     "TC_01" : {
+        "username" : "shruti.chaurasiya@indexnine.com",
+        "password" : "Shruti@0908",
+        "url":"https://optra.indexnine.com/",
         "description": "Testing on Optra"
 
     }
