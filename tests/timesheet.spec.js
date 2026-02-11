@@ -1,7 +1,9 @@
 const {test, expect} = require('@playwright/test');
+const {Login_Locators}=require('../page_objects/login_locators');
 const {Timesheet_Keywords} = require('../action/timesheet_keywords.js');
 const {Login_Keywords} = require('../action/login_keywords.js');
 const { time } = require('node:console');
+
 
 const data_set = require('../testdata/login.json');
 const timesheet_data = require('../testdata/timesheet_data.json');
@@ -13,7 +15,11 @@ const timesheet_keywords = new Timesheet_Keywords();
 
 test('@timesheet Navigate to the Timesheet Page and Validate the Page and log time in the timesheet' , async({page}) =>
 {   
-    await login_keywords.Login_To_Optra(page,data_set.TC_06.username,data_set.TC_06.password);
+    const login_page = new Login_Locators(page);
+    // await login_keywords.Login_To_Optra(page,data_set.TC_06.username,data_set.TC_06.password);
+    await timesheet_keywords.navigateToLoginPageforProd(page,timesheet_data.TC_01.url);
+    await login_page.validateLoginPage(timesheet_data.TC_01.username,timesheet_data.TC_01.password);
+    await page.waitForLoadState('networkidle');
     await timesheet_keywords.navigateToTimesheetPage(page);
     const date = await timesheet_keywords.getCurrentMonthAndYear();
     await timesheet_keywords.ClickOnLogTimeButton(page,date);
