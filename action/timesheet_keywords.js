@@ -1,4 +1,4 @@
-const {expect } = require('@playwright/test');
+const {expect} = require('@playwright/test');
 const {Timesheet_Locators} = require('../page_objects/timesheet_locators');
 const { get } = require('node:http');
 const { time } = require('node:console');

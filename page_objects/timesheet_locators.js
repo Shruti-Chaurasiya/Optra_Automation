@@ -1,5 +1,3 @@
-const {except} = require('@playwright/test');
-
 class Timesheet_Locators { 
     constructor(page){
         this.page = page;
@@ -18,7 +16,8 @@ class Timesheet_Locators {
         // this.timesheet_select_activity = page.locator('//div[text()="Select Activity"]');
         this.timesheet_select_activity = page.locator('//div[text()="Select Activity"]//parent::div//input');
         // this.qa_activity_option = page.getByRole('option', {name: 'Quality Assurance (QA)'});
-        this.qa_activity_option = page.locator('(//div[@role="option"])[4]');
+        // this.qa_activity_option = page.locator('(//div[@role="option"])[4]');
+        this.qa_activity_option = page.locator('//div[@class="css-lmizcc-option" and contains(text(),"Quality Assurance (QA)")]');
         this.descriptio_text = page.locator('//div[@aria-colindex="4" and not (@role="columnheader")]//input');
         this.time_textbox = (col_index) => page.locator(`(//div[@role="gridcell" and @aria-colindex="${col_index}"]/input)[1]`);
 
@@ -30,6 +29,4 @@ class Timesheet_Locators {
         
      }
 }
-
-
 module.exports = {Timesheet_Locators};
