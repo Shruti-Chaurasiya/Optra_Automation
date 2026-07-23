@@ -17,9 +17,9 @@ class Timesheet_Locators {
         this.timesheet_select_activity = page.locator('//div[text()="Select Activity"]//parent::div//input');
         // this.qa_activity_option = page.getByRole('option', {name: 'Quality Assurance (QA)'});
         // this.qa_activity_option = page.locator('(//div[@role="option"])[4]');
-        this.qa_activity_option = page.locator('//div[@class="css-lmizcc-option" and contains(text(),"Quality Assurance (QA)")]');
+        this.qa_activity_option = (activity) => page.locator('//div[@class="css-lmizcc-option" and contains(text(),"' + activity + '")]');
         this.descriptio_text = page.locator('//div[@aria-colindex="4" and not (@role="columnheader")]//input');
-        this.time_textbox = (col_index) => page.locator(`(//div[@role="gridcell" and @aria-colindex="${col_index}"]/input)[1]`);
+        this.time_textbox = (col_index) => page.locator(`//div[@role="gridcell" and @aria-colindex="${col_index}"]/input`);
 
         this.total_hours_text = page.locator('//span[@class=" total-hours-cell"]');
         this.save_button = page.locator('//button[text()="Save"]');

@@ -23,7 +23,7 @@ test('@timesheet Navigate to the Timesheet Page and Validate the Page and log ti
     await timesheet_keywords.navigateToTimesheetPage(page);
     const date = await timesheet_keywords.getCurrentMonthAndYear();
     await timesheet_keywords.ClickOnLogTimeButton(page,date);
-    await timesheet_keywords.LogTimeInTimesheet(page,timesheet_data.TC_01.description);
+    await timesheet_keywords.LogTimeInTimesheet(page,timesheet_data.TC_01.description , timesheet_data.TC_01.activity);
 
     
 });
