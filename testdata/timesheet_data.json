@@ -1,9 +1,10 @@
 {
     "TC_01" : {
-        "username" : "shruti.chaurasiya@indexnine.com",
-        "password" : "Shruti@0908",
+        "username" : "pratiksha.zende@indexnine.com",
+        "password" : "MH16bq9655",
         "url":"https://optra.indexnine.com/",
-        "description": "Functional Testing on JUSTO "
+        "description": "DevOps activities on JUSTO ",
+        "activity": "Development"
     }
 
 }

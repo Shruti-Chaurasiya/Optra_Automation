@@ -48,11 +48,11 @@ class Timesheet_Keywords {
         await expect(timesheet_page.timesheet_header).toBeVisible();
     }
 
-    async LogTimeInTimesheet(page,description) 
+    async LogTimeInTimesheet(page,description, activity) 
     {
         const timesheet_page = new Timesheet_Locators(page);
         await timesheet_page.timesheet_select_activity.click();
-        await timesheet_page.qa_activity_option.click();
+        await timesheet_page.qa_activity_option(activity).click();
         await timesheet_page.descriptio_text.fill(description);
         // starting the value of i from 6 bcoz Monday is at col_index 6 in the timesheet
         for (let i=6;i<=10;i++)
